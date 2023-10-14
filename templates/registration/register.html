@@ -1,0 +1,58 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block body %}
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <h4 style="color:red;">{{ message }}</h4>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="col-lg-2"></div> <!-- end of col -->
+                    <div class="col-lg-8">
+                        <form method="post">
+                        <div class="row text-container">
+                        <h3 class="sav-h3 text-center">Create an account with SaVests</h3>
+                            <div class="col-12" style="color:red;">
+                                {% csrf_token %}
+                                {% if form.errors %}
+                                    {{form.errors}}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="text" class="form-control-input" value="{{form.first_name.value|default_if_none:''}}" name="first_name" id="id_first_name" required="True" placeholder="Enter your First Name">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="text" class="form-control-input" value="{{form.last_name.value|default_if_none:''}}" name="last_name" id="id_last_name" required="True" placeholder="Enter your Last name">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="email" class="form-control-input" value="{{form.email.value|default_if_none:''}}" name="email" id="id_email" required="True" placeholder="Enter your Email Address">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="phone" class="form-control-input" value="{{form.phone_number.value|default_if_none:''}}" name="phone_number" id="id_phone_number" required="True" placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="password" class="form-control-input" name="password1" id="id_password1" required="True" placeholder="Enter your Password">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="password" class="form-control-input" name="password2" id="id_password2" required="True" placeholder="Confirm password">
+                            </div>
+                            <div class="form-group col-12">
+                                <input type="submit" class="form-control-submit-button" value="CREATE ACCOUNT" >
+                            </div>
+                        </div>
+                        </form>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-2"></div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+{% endblock %}

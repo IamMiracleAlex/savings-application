@@ -1,0 +1,167 @@
+{% extends 'web/base.html' %} {% load static %} {% block body %}
+
+<!-- Header -->
+<header id="header" class="header">
+  <div class="header-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="text-container">
+            <h1>
+              What is SaVest?
+            </h1>
+            <p class="sub-heading">
+              Helping you to achieve your financial goals without capital
+              limitation
+            </p>
+            <p class="p-large">
+              Our flagship product, SaVests is a Savings, Investment and Payment
+              platform created with the aim of encouraging the age-long
+              Wealth-Creation-Habit called
+              <span style="color: #000e6e; font-weight: bold;">SAVINGS</span>
+              among youths and all that desires to create wealth for themselves.
+              With additional features for Bill Payments including Cable TV
+              Subscription, Movie Tickets, Mobile Data and Airtime Purchase,
+              Power and Utility Bills Payment and more
+            </p>
+          </div>
+        </div>
+
+        <!-- end of col -->
+        <div class="col-lg-6">
+          <div class="image-container">
+            <img
+              class="img-fluid"
+              src="{% static 'img/frame1.png' %}"
+              alt="alternative"
+            />
+          </div>
+          <!-- end of image-container -->
+        </div>
+        <!-- end of col -->
+      </div>
+      <!-- end of row -->
+    </div>
+    <!-- end of container -->
+  </div>
+  <!-- end of header-content -->
+</header>
+<!-- end of header -->
+<!-- end of header -->
+
+<div class="mission">
+  <div class="image-container first-img">
+    <img
+      class="img-fluid"
+      src="{% static 'images/mission2.png' %}"
+      alt="alternative"
+    />
+  </div>
+  <div class="text-container-mission">
+    <h1>
+      Our Mission
+    </h1>
+    <p class="p-large">
+      To raise a new generation of people empowered to achieve their goals
+      without capital limitation
+    </p>
+  </div>
+  <div class="image-container">
+    <img
+      class="img-fluid"
+      src="{% static 'images/mission.png' %}"
+      alt="alternative"
+    />
+  </div>
+</div>
+<div class="vision-container">
+  <div class="vision">
+    <div class="text-container-mission">
+      <div class="text-container-mission">
+        <h1>
+          Our Slogan
+        </h1>
+        <p class="p-large">
+          Save to Create Wealth was born out of our understanding of power of
+          <span style="color: #000e6e; font-weight: bold;"
+            >Compound Interest</span
+          >
+          and how it can help you to accumulate wealth by saving as little as
+          N100 a day for the rest of your life.
+        </p>
+      </div>
+    </div>
+    <div class="image-container">
+      <img
+        class="img-fluid"
+        src="{% static 'images/mission3.png' %}"
+        alt="alternative"
+      />
+    </div>
+    <div class="text-container-mission">
+      <div class="text-container-mission">
+        <h1>
+          Our Vision
+        </h1>
+        <p class="p-large">
+          To encourage Savings and Investments
+        </p>
+        <p class="p-large">
+          We believe that to achieve Financial Goals requires some level of
+          discipline. A lot of commitment together with self-conviction must be
+          made to reach your Financial Goals. Just like any other goal in life.
+          You need to move ‘one step at a time’, putting little amount of money
+          away in a safe place at regular intervals until your financial goal is
+          achieved. That is why we are offering you the SaVests platform built
+          with the highest level of online security and managed by experienced
+          banking professionals to help you fulfill your financial targets
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="team">
+  <h2>Meet the team</h>
+    <div class="team-wrapper">
+
+      <div class="image-team">
+      <img
+        class="img-fluid"
+        src="{% static 'images/team1.jpg' %}"
+        alt="alternative"
+      />
+       <h3 class="team-name">
+        Lucky Egede
+      </h3>
+    </div>
+
+    
+      <div class="image-team">
+      <img
+        class="img-fluid"
+        src="{% static 'images/team2.jpeg' %}"
+        alt="alternative"
+      />
+      <h3 class="team-name">
+         Lekan Kasumu
+      </h3>
+     
+    </div>
+    
+      <div class="image-team">
+      <img
+        class="img-fluid"
+        src="{% static 'images/team4.jpeg' %}"
+        alt="alternative"
+      />
+      <h3 class="team-name">
+       Ose Iyoke
+      </h3>
+      
+    </div>
+     
+    </div>
+</div>
+
+{% endblock %}

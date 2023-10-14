@@ -1,0 +1,382 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; {% if has_view_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add %}{% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}<div id="content-main">
+{% block object-tools %}
+{% if change %}{% if not is_popup %}
+  <ul class="object-tools">
+    {% block object-tools-items %}
+      {% change_form_object_tools %}
+    {% endblock %}
+  </ul>
+{% endif %}{% endif %}
+{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
+<div>
+{% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+{% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+{% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+{% if errors %}
+    <p class="errornote">
+    {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+    </p>
+    {{ adminform.form.non_field_errors }}
+{% endif %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+{% endblock %}
+
+{% block after_field_sets %}{% endblock %}
+
+{% block inline_field_sets %}
+{% for inline_admin_formset in inline_admin_formsets %}
+    {% include inline_admin_formset.opts.template %}
+{% endfor %}
+{% endblock %}
+
+{% block after_related_objects %}
+
+<div class='module'><h2>Accounts</h2></div>
+
+<table style="overflow-x:auto;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Type of Account</th>
+      <th scope="col">Balance</th>
+      <th scope="col">Interest</th>
+      <th scope="col">Last Interest Withdrawal day</th>
+      <th scope="col">Interest active</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for account in accounts %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{account.get_type_of_account_display}}</td>
+      <td>{{account.balance}}</td>
+      <td>{{account.interest}}</td>
+      <td>{{account.last_interest_withdrawal_day}}</td>
+      <td>{{account.interest_active}}</td>
+      <td>{{account.created_at}}</td>
+      <td>{{account.updated_at}}</td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br> <br>
+<div class='module'><h2>Transactions</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Account</th>
+      <th scope="col">Type of transaction</th>
+      <th scope="col">status</th>
+      <th scope="col">reference</th>
+      <th scope="col">amount</th>
+      <th scope="col">balance after transaction</th>
+      <th scope="col">fee</th>
+      <th scope="col">memo</th>
+      <th scope="col">data</th>
+      <th scope="col">Destination Account</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for transaction in transactions %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{transaction.account}}</td>
+      <td>{{transaction.get_type_of_transaction_display}}</td>
+      <td>{{transaction.get_status_display}}</td>
+      <td> <a href="{% url 'admin:transactions_transaction_change' transaction.id %}" target="_blank">{{transaction.reference}}</a></td>
+      <td>{{transaction.amount}}</td>
+      <td>{{transaction.balance_after_transaction}}</td>
+      <td>{{transaction.fee}}</td>
+      <td>{{transaction.memo}}</td>
+      <td>{{transaction.data}}</td>
+      <td>{{transaction.dest_account}}</td>
+      <td>{{transaction.created_at}}</td>
+      <td>{{transaction.updated_at}}</td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<br> <br>
+<div class='module'><h2>Safe Locks</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">account</th>
+      <th scope="col">amount</th>
+      <th scope="col">interest</th>
+      <th scope="col">Target goal</th>
+      <th scope="col">category</th>
+      <th scope="col">is active</th>
+      <th scope="col">maturity date</th>
+      <th scope="col">created at</th>
+      <th scope="col">updated at</th>
+      <th scope="col">Subscription</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for safelock in safelocks %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{safelock.name}}</td>
+      <td>{{safelock.account}}</td>
+      <td>{{safelock.amount}}</td>
+      <td>{{safelock.interest}}</td>
+      <td>{{safelock.target_goal}}</td>
+      <td>{{safelock.get_category_display}}</td>
+      <td>{{safelock.is_active}}</td>
+      <td>{{safelock.maturity_date}}</td>
+      <td>{{safelock.created_at}}</td>
+      <td>{{safelock.updated_at}}</td>
+      <td>{{safelock.subscription}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<br> <br>
+<div class='module'><h2>Subscriptions</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">fund source</th>
+      <th scope="col">account</th>
+      <th scope="col">amount</th>
+      <th scope="col">interval</th>
+      <th scope="col">is active</th>
+      <th scope="col">start date </th>
+      <th scope="col">previous paydate</th>
+      <th scope="col">created at</th>
+      <th scope="col">updated at</th>
+      <th scope="col">auth</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for subscription in subscriptions %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{subscription.name}}</td>
+      <td>{{subscription.fund_source}}</td>
+      <td>{{subscription.account}}</td>
+      <td>{{subscription.amount}}</td>
+      <td>{{subscription.get_interval_display}}</td>
+      <td>{{subscription.is_active}}</td>
+      <td>{{subscription.start_date}}</td>
+      <td>{{subscription.previous_paydate}}</td>
+      <td>{{subscription.created_at}}</td>
+      <td>{{subscription.updated_at}}</td>
+      <td>{{subscription.auth}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<br> <br>
+<div class='module'><h2>Fund Sources</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      {% comment %} <th scope="col">User</th> {% endcomment %}
+      <th scope="col">last 4</th>
+      <th scope="col">Bank name</th>
+      <th scope="col">exp month</th>
+      <th scope="col">exp year</th>
+      <th scope="col">auth code</th>
+      <th scope="col">is active </th>
+      <th scope="col">created at</th>
+      <th scope="col">updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for fundsource in fundsources %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      {% comment %} <td>{{fundsource.user}}</td> {% endcomment %}
+      <td>{{fundsource.last4}}</td>
+      <td>{{fundsource.bank_name}}</td>
+      <td>{{fundsource.exp_month}}</td>
+      <td>{{fundsource.exp_year}}</td>
+      <td>{{fundsource.auth_code}}</td>
+      <td>{{fundsource.is_active}}</td>
+      <td>{{fundsource.created_at}}</td>
+      <td>{{fundsource.updated_at}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<br> <br>
+<div class='module'><h2>Beneficiaries</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      {% comment %} <th scope="col">User</th> {% endcomment %}
+      <th scope="col">Account Number</th>
+      <th scope="col">Bank</th>
+      <th scope="col">Recipient Name</th>
+      <th scope="col">Is Default</th>
+      <th scope="col">created at</th>
+      <th scope="col">updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for beneficiary in beneficiaries %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      {% comment %} <td>{{beneficiary.user}}</td> {% endcomment %}
+      <td>{{beneficiary.uid}}</td>
+      <td>{{beneficiary.uid2}}</td>
+      <td>{{beneficiary.recipient_name}}</td>
+      <td>{{beneficiary.is_default}}</td>
+      <td>{{beneficiary.created_at}}</td>
+      <td>{{beneficiary.updated_at}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br> <br>
+<div class='module'><h2>KYC Profile</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      {% comment %} <th scope="col">User</th> {% endcomment %}
+      <th scope="col">bvn</th>
+      <th scope="col">name</th>
+      <th scope="col">phone number</th>
+      <th scope="col">dob</th>
+      <th scope="col">verification level</th>
+      <th scope="col">created at</th>
+      <th scope="col">updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for kycprofile in kycprofiles %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      {% comment %} <td>{{kycprofile.user}}</td> {% endcomment %}
+      <td>{{kycprofile.bvn}}</td>
+      <td>{{kycprofile.name}}</td>
+      <td>{{kycprofile.phone_number}}</td>
+      <td>{{kycprofile.dob}}</td>
+      <td>{{kycprofile.get_verification_level_display}}</td>
+      <td>{{kycprofile.created_at}}</td>
+      <td>{{kycprofile.updated_at}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br> <br>
+<div class='module'><h2>Activated Referrals</h2></div>
+<table style="overflow-x:auto;" >
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      {% comment %} <th scope="col">User</th> {% endcomment %}
+      <th scope="col">email</th>
+      <th scope="col">phone number</th>
+      <th scope="col">first name</th>
+      <th scope="col">last name</th>
+      <th scope="col">active?</th>
+      <th scope="col">activated?</th>
+      <th scope="col">KYC LEVEL</th>
+      <th scope="col">wallet balance</th>
+      <th scope="col">direct balance</th>
+      <th scope="col">target balance</th>
+      <th scope="col">created at</th>
+      <th scope="col">updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for user in referrals %} 
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      {% comment %} <td>{{user.id}}</td> {% endcomment %}
+      <td>{{user.email}}</td>
+      <td> <a href="{% url 'admin:users_customuser_change' user.id %}" target="_blank">{{user.phone_number}}</a></td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.is_active}}</td>
+      <td>{{user.account_activated}}</td>
+      <td>{{user.kyc_level}}</td>
+      <td>{{user.wallet_balance}}</td>
+      <td>{{user.direct_balance}}</td>
+      <td>{{user.target_balance}}</td>
+      <td>{{user.created_at}}</td>
+      <td>{{user.updated_at}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
+
+
+{% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="{% static 'admin/js/change_form.js' %}"
+            {% if adminform and add %}
+                data-model-name="{{ opts.model_name }}"
+            {% endif %}>
+    </script>
+{% endblock %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+
+</div>
+</form></div>
+{% endblock %}

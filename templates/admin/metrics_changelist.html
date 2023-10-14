@@ -1,0 +1,22 @@
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+    
+<form method="POST" action="/admin/metrics/metric/custom-metric/">
+{% csrf_token %}
+  <legend>Generate Custom Metric <strong>(Use Chrome)</strong>:</legend>
+  <br>
+  <strong> From: </strong>
+  <input id="start_date" type="date" name="start_date">
+  <strong style='margin-left: 15px;' >  To: </strong>  
+  <input id="end_date" type="date" name="end_date" >
+  <input type="submit" style='margin-left: 15px;'>
+</form>
+    <br> <br>
+{% endblock %}
+
+{% block object-tools %}
+    
+{% endblock %}
+
+{% block pagination %}{% endblock %}

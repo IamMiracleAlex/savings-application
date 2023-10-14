@@ -1,0 +1,223 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block body %}
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+					<div class="col-lg-8">
+					<h2 class="text-center"> Frequently Asked Questions</h2>
+
+						<div class="accordion" id="accordionExample">
+						<div class="card">
+							<div class="card-header" id="headingOne">
+							<h2 class="mb-0">
+								<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									What is Activation?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+							<div class="card-body">
+								Activation is the process of unlocking your account to access the packages and services of the <b> SaVests</b> platform, this is required just once upon registering on the platform. The activation is also a means of verification.
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingTwo">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									How much is activation fee?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+							<div class="card-body">
+								Activation is set at <b>NGN1,000</b> , and this is credited into your main wallet which can be withdrawn at any time. 
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingThree">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									What is SaVests Direct? 
+								</button>
+							</h2>
+							</div>
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+							<div class="card-body">
+								<b>SaVests Direct</b> allows you save a minimum of <b>N1,000</b> periodically (Daily, Weekly or Monthly) towards a particular goal. With <b>SaVests Direct</b>  you can watch your savings grow with the interest on your phone. You can also have multiple <b>SaVests Direct</b> savings account for multiple goals in mind (School fees, House rents, To buy land, To buy a car, Child naming and dedication ceremonies and more), With <b>SaVests Direct</b> you can make withdrawals at anytime from your savings and also lock your savings away into <b>Savests Deposit</b> for higher interest or to <b>SaVests Wallet</b> if you are the type that is not interested in earning interest.
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingFour">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+									What is SaVests Wallet?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+							<div class="card-body">
+								<b>SaVest Wallet</b> is designed for some of our customers who want to keep money away for a period of time and may not be interested in earning interest for religious or ethical reasons. This product allow you keep your fund with SaVests and make withdrawals anytime without interest or penalty on withdrawals 
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingFive">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+									How secure are my card details?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+							<div class="card-body">
+								Your card details are extremely secure and to confirm this, your card details are not stored on our platform, but it is kept safely by the payment gateway, and it is only called when you want to make payments
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingSix">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+									What happens at the end of my saving and/or deposit?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+							<div class="card-body">
+								Once the maturity date of your savings and/or deposit arrives, your funds will be moved to your main wallet after which you can withdraw or re-invest the funds.
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingSeven">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+									What does it mean to break SaVests direct savings?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+							<div class="card-body">
+								Typically, recurring payments are not mean to end until the maturity date of your savings, but if you choose to draw money from this account before the maturity date, It means breaking savings. And this attracts processing fee of <b>5%</b> of the amount you want to withdraw from the savings.
+								<br>But will have free withdrawal days which are the end of each quarter of the year:
+								<br> <b> 28th March, 28th June, 28th September and 28th December </b>
+								<br> On these days, SaVests do not charge any fee from drawing from your savings
+							</div>
+							</div>
+						</div>
+						<!-- <div class="card">
+							<div class="card-header" id="headingEight">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+								Collapsible Group Item #3
+								</button>
+							</h2>
+							</div>
+							<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+							<div class="card-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingNine">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+								Collapsible Group Item #3
+								</button>
+							</h2>
+							</div>
+							<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+							<div class="card-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+							</div>
+						</div> -->
+						<!-- <div class="card">
+							<div class="card-header" id="headingThree">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								Collapsible Group Item #3
+								</button>
+							</h2>
+							</div>
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+							<div class="card-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingThree">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								Collapsible Group Item #3
+								</button>
+							</h2>
+							</div>
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+							<div class="card-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingThree">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								Collapsible Group Item #3
+								</button>
+							</h2>
+							</div>
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+							<div class="card-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+							</div>
+						</div> -->
+						<div class="card">
+							<div class="card-header" id="headingEight">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+									How do I talk to a customer care service?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+							<div class="card-body">
+								When you have challenges on our platform or need information/clarification, kindly contact us on any of our channels: info@savests.com OR +2348164566901
+							</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingTen">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+									Can I get funds I have locked away in SaVests Deposit?
+								</button>
+							</h2>
+							</div>
+							<div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+							<div class="card-body">
+								For <b>SaVests Deposits</b> , the funds are untouchable until the maturity date of the deposits
+							</div>
+							</div>
+						</div>
+						</div>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-2"></div>
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+{% endblock %}

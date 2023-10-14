@@ -1,0 +1,40 @@
+{% extends 'emails/base.html' %}
+
+{% block title %}
+	<!-- Activate your Savest Email -->
+{% endblock %}
+
+{% block greeting %}
+	Hi {{name}}
+{% endblock %}
+
+{% block paragraph_one %}
+	<p>
+		Congratulations! You just accomplished the first step towards achieving your financial goals. 
+		Our desire  at SAVESTS is to raise a generation that lack of capital will not hinder you from achieving their dreams.
+	</p>
+	<p>
+		At SAVESTS, you manage your money with the aid of our transparent platform. 
+	</p>
+
+	<p> It is difficult to save because nobody ever has enough, but you can't have more until you save. </p>	
+
+	
+{% endblock %}
+
+{% block paragraph_two %}
+	<p>	We use our app to encourage you all the way until you begin to find it interesting and easy.  </p>
+	<p>	We assure you of the highest level of security for your funds and your personal information.  </p>
+	<p> Please click on the link below to confirm your registration </p>
+	 
+{% endblock %}
+
+{% block call_to_action %}
+
+	<a style="background-color:#041164;border:2px solid #041164;border-radius:2px;color:#ffffff;white-space:nowrap;font-weight:bold;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:36px;text-align:center;text-decoration:none;padding:10px 0;border-radius: 4px;width: 200px"
+	href="https://{{ domain }}{% url 'users:activate_email' uidb64=uid token=token %}"
+	target="_blank">
+		Activate Email
+	</a>
+		
+{% endblock %}
